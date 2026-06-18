@@ -67,3 +67,4 @@ export {
   createAuthStore,
 } from "./presentation/auth-store";
 export { type RoleGuardResult, useRoleGuard } from "./presentation/guards";
+export { AuthWrapper } from "./presentation/auth-wrapper";

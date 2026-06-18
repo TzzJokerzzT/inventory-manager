@@ -18,3 +18,6 @@ export {
 
 // Guards
 export { type RoleGuardResult, useRoleGuard } from "./guards";
+
+// Auth wrapper (for root layout)
+export { AuthWrapper } from "./auth-wrapper";
