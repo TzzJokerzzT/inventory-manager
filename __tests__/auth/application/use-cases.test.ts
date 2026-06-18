@@ -9,16 +9,10 @@
  */
 
 import { describe, expect, it, vi } from "vitest";
-import type {
-  LoginCredentials,
-  RegistrationData,
-  Session,
-  User,
-} from "@/lib/auth/domain/entities";
-import type { IAuthRepository } from "@/lib/auth/domain/repository";
 import {
   AuthError,
   CheckPermissionUseCase,
+  classifyError,
   DuplicateEmailError,
   InvalidCredentialsError,
   InvalidEmailDomainError,
@@ -28,8 +22,14 @@ import {
   RefreshSessionUseCase,
   RegisterUseCase,
   SessionExpiredError,
-  classifyError,
 } from "@/lib/auth/application/use-cases";
+import type {
+  LoginCredentials,
+  RegistrationData,
+  Session,
+  User,
+} from "@/lib/auth/domain/entities";
+import type { IAuthRepository } from "@/lib/auth/domain/repository";
 
 // ---------------------------------------------------------------------------
 // Shared test fixtures
@@ -304,7 +304,8 @@ describe("RefreshSessionUseCase", () => {
 // ---------------------------------------------------------------------------
 
 describe("CheckPermissionUseCase", () => {
-  const useCase = new CheckPermissionUseCase(createMockRepo());
+  // CheckPermissionUseCase is pure domain logic — no repository needed
+  const useCase = new CheckPermissionUseCase();
 
   it("returns true when user role meets the required role", () => {
     expect(useCase.execute("admin", "operador")).toBe(true);

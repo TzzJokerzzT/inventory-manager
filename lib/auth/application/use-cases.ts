@@ -18,8 +18,8 @@ import type {
 } from "../domain/entities";
 import type { IAuthRepository } from "../domain/repository";
 import {
-  isAllowedEmailDomain,
   hasPermission as domainHasPermission,
+  isAllowedEmailDomain,
 } from "../domain/value-objects";
 
 // ---------------------------------------------------------------------------
@@ -210,6 +210,10 @@ export class RefreshSessionUseCase {
  *
  * Returns true if the user's role meets or exceeds the required role level.
  * This is a synchronous use case (no I/O).
+ *
+ * Note: This use case is pure domain logic and doesn't need a repository.
+ * The constructor is empty for consistent DI pattern, but the `execute`
+ * method only uses the `hasPermission` domain function.
  */
 export class CheckPermissionUseCase {
   /**

@@ -8,6 +8,22 @@
  * This barrel re-exports domain types and selected infrastructure utilities.
  */
 
+// Application layer (framework-agnostic use cases)
+export {
+  AuthError,
+  type AuthErrorCode,
+  CheckPermissionUseCase,
+  classifyError,
+  DuplicateEmailError,
+  InvalidCredentialsError,
+  InvalidEmailDomainError,
+  LoginUseCase,
+  LogoutUseCase,
+  NetworkError,
+  RefreshSessionUseCase,
+  RegisterUseCase,
+  SessionExpiredError,
+} from "./application/use-cases";
 // Domain layer (framework-agnostic)
 export type {
   AuthState,
@@ -20,7 +36,6 @@ export type {
 } from "./domain/entities";
 export type { IAuthRepository } from "./domain/repository";
 export type { LoginInput, RegisterInput } from "./domain/schemas";
-
 export {
   LoginSchema,
   RegisterSchema,
@@ -39,20 +54,16 @@ export {
   SESSION_TIMEOUTS,
   VALID_ROLES,
 } from "./domain/value-objects";
-
-// Application layer (framework-agnostic use cases)
 export {
-  AuthError,
-  type AuthErrorCode,
-  InvalidCredentialsError,
-  InvalidEmailDomainError,
-  DuplicateEmailError,
-  SessionExpiredError,
-  NetworkError,
-  classifyError,
-  LoginUseCase,
-  RegisterUseCase,
-  LogoutUseCase,
-  RefreshSessionUseCase,
-  CheckPermissionUseCase,
-} from "./application/use-cases";
+  type AuthContextValue,
+  AuthProvider,
+  useAuth,
+} from "./presentation/auth-provider";
+// Presentation layer (React components, hooks, store)
+export {
+  type AuthStore,
+  type AuthStoreActions,
+  type AuthStoreState,
+  createAuthStore,
+} from "./presentation/auth-store";
+export { type RoleGuardResult, useRoleGuard } from "./presentation/guards";
