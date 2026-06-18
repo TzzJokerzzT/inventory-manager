@@ -14,7 +14,6 @@ import {
   Button,
   Card,
   FieldError,
-  Form,
   Input,
   Label,
   Link,
@@ -141,7 +140,7 @@ function RegisterForm() {
           </Card.Description>
         </Card.Header>
 
-        <Form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Card.Content>
             <div className="flex flex-col gap-4">
               <TextField name="name" type="text" isRequired>
@@ -286,7 +285,7 @@ function RegisterForm() {
               </Link>
             </p>
           </Card.Footer>
-        </Form>
+        </form>
       </Card>
     </div>
   );

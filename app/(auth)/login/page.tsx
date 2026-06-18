@@ -14,7 +14,6 @@ import {
   Button,
   Card,
   FieldError,
-  Form,
   Input,
   Label,
   Link,
@@ -106,7 +105,7 @@ export default function LoginPage() {
           </Card.Description>
         </Card.Header>
 
-        <Form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <Card.Content>
             <div className="flex flex-col gap-4">
               <TextField name="email" type="email" isRequired>
@@ -188,7 +187,7 @@ export default function LoginPage() {
               </Link>
             </p>
           </Card.Footer>
-        </Form>
+        </form>
       </Card>
     </div>
   );
