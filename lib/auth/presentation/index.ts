@@ -17,6 +17,8 @@ export {
 } from "./auth-store";
 // Auth wrapper (for root layout)
 export { AuthWrapper } from "./auth-wrapper";
+// Mock auth wrapper (for local dev without backend)
+export { MockAuthWrapper } from "./mock-auth-wrapper";
 // Guards
 export { type RoleGuardResult, useRoleGuard } from "./guards";
 // Session timer hook

@@ -7,6 +7,7 @@
 
 export type { AuthClientUser } from "./auth-client";
 export { authClient, betterAuthAdapter } from "./auth-client";
+export { mockAuthRepository } from "./mock-auth-repository";
 export {
   clearAuthCookies,
   hasRefreshCookie,
