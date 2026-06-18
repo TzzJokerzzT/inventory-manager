@@ -39,3 +39,20 @@ export {
   SESSION_TIMEOUTS,
   VALID_ROLES,
 } from "./domain/value-objects";
+
+// Application layer (framework-agnostic use cases)
+export {
+  AuthError,
+  type AuthErrorCode,
+  InvalidCredentialsError,
+  InvalidEmailDomainError,
+  DuplicateEmailError,
+  SessionExpiredError,
+  NetworkError,
+  classifyError,
+  LoginUseCase,
+  RegisterUseCase,
+  LogoutUseCase,
+  RefreshSessionUseCase,
+  CheckPermissionUseCase,
+} from "./application/use-cases";
