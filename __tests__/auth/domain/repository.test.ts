@@ -1,11 +1,9 @@
 import { describe, expect, it } from "vitest";
-import type { IAuthRepository } from "@/lib/auth/domain/repository";
 import type {
   LoginCredentials,
   RegistrationData,
-  Session,
-  User,
 } from "@/lib/auth/domain/entities";
+import type { IAuthRepository } from "@/lib/auth/domain/repository";
 
 describe("IAuthRepository interface contract", () => {
   it("can be implemented as a mock for testing", () => {

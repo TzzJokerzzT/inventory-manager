@@ -15,21 +15,9 @@ export type {
   SessionStatus,
   User,
 } from "./entities";
-
-// Value objects
-export {
-  ALLOWED_EMAIL_DOMAINS,
-  DEFAULT_ROLE,
-  ROLE_HIERARCHY,
-  SESSION_TIMEOUTS,
-  VALID_ROLES,
-  extractEmailDomain,
-  hasPermission,
-  isAllowedEmailDomain,
-  isValidRole,
-} from "./value-objects";
-
-export type { AllowedEmailDomain } from "./value-objects";
+// Repository interface
+export type { IAuthRepository } from "./repository";
+export type { LoginInput, RegisterInput } from "./schemas";
 
 // Schemas
 export {
@@ -38,8 +26,16 @@ export {
   validateLogin,
   validateRegister,
 } from "./schemas";
-
-export type { LoginInput, RegisterInput } from "./schemas";
-
-// Repository interface
-export type { IAuthRepository } from "./repository";
+export type { AllowedEmailDomain } from "./value-objects";
+// Value objects
+export {
+  ALLOWED_EMAIL_DOMAINS,
+  DEFAULT_ROLE,
+  extractEmailDomain,
+  hasPermission,
+  isAllowedEmailDomain,
+  isValidRole,
+  ROLE_HIERARCHY,
+  SESSION_TIMEOUTS,
+  VALID_ROLES,
+} from "./value-objects";

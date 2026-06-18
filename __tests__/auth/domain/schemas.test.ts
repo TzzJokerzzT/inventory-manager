@@ -1,10 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  LoginSchema,
-  RegisterSchema,
-  validateLogin,
-  validateRegister,
-} from "@/lib/auth/domain/schemas";
+import { validateLogin, validateRegister } from "@/lib/auth/domain/schemas";
 
 describe("LoginSchema", () => {
   it("validates correct login data", () => {
