@@ -7,10 +7,10 @@
  * we test the redirection logic and authentication checks.
  */
 
-import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ReactNode } from "react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 // Mock next/navigation
 const mockPush = vi.fn();

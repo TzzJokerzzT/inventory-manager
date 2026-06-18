@@ -7,10 +7,10 @@
  * without actually running the Next.js server.
  */
 
-import { describe, expect, it } from "vitest";
 import { NextRequest, NextResponse } from "next/server";
-import { proxy } from "@/proxy";
+import { describe, expect, it } from "vitest";
 import { SESSION_COOKIE_NAME } from "@/lib/constants";
+import { proxy } from "@/proxy";
 
 /** Helper to create a next request with optional cookies. */
 function createRequest(pathname: string, options?: { hasCookie?: boolean }) {

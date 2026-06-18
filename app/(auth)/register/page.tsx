@@ -10,9 +10,6 @@
  * - Redirects already-authenticated users to /dashboard
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import * as v from "valibot";
 import {
   Button,
   Card,
@@ -23,10 +20,13 @@ import {
   Link,
   TextField,
 } from "@heroui/react";
-import { MailIcon, UserIcon } from "@/lib/icons";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import * as v from "valibot";
 import { RegisterSchema } from "@/lib/auth/domain/schemas";
-import { useAuth } from "@/lib/auth/presentation/auth-provider";
 import { ALLOWED_EMAIL_DOMAINS } from "@/lib/auth/domain/value-objects";
+import { useAuth } from "@/lib/auth/presentation/auth-provider";
+import { MailIcon, UserIcon } from "@/lib/icons";
 
 export default function RegisterPage() {
   const router = useRouter();

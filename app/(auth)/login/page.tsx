@@ -10,9 +10,6 @@
  * - Shows error messages for invalid credentials or network errors
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import * as v from "valibot";
 import {
   Button,
   Card,
@@ -23,10 +20,13 @@ import {
   Link,
   TextField,
 } from "@heroui/react";
-import { LockIcon, MailIcon } from "@/lib/icons";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import * as v from "valibot";
 import { LoginSchema } from "@/lib/auth/domain/schemas";
-import { useAuth } from "@/lib/auth/presentation/auth-provider";
 import { ALLOWED_EMAIL_DOMAINS } from "@/lib/auth/domain/value-objects";
+import { useAuth } from "@/lib/auth/presentation/auth-provider";
+import { LockIcon, MailIcon } from "@/lib/icons";
 
 export default function LoginPage() {
   const router = useRouter();

@@ -15,9 +15,9 @@ export {
   type AuthStoreState,
   createAuthStore,
 } from "./auth-store";
-
-// Guards
-export { type RoleGuardResult, useRoleGuard } from "./guards";
-
 // Auth wrapper (for root layout)
 export { AuthWrapper } from "./auth-wrapper";
+// Guards
+export { type RoleGuardResult, useRoleGuard } from "./guards";
+// Session timer hook
+export { useSessionTimer } from "./use-session-timer";

@@ -7,23 +7,28 @@
  * - Redirects to /login if not authenticated
  * - Checks role authorization for the current route
  * - Shows loading state while session is being verified
- * - Placeholder layout structure (sidebar/navbar coming in Phase 4)
+ * - Includes Sidebar (desktop), MobileSidebar (mobile Drawer)
+ * - Includes session timeout monitoring and session expiry modal
  */
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
 import { Spinner } from "@heroui/react";
-import { useAuth } from "@/lib/auth/presentation/auth-provider";
-import { hasPermission } from "@/lib/auth/domain/value-objects";
+import { usePathname, useRouter } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Role } from "@/lib/auth/domain/entities";
+import { hasPermission } from "@/lib/auth/domain/value-objects";
+import { useAuth } from "@/lib/auth/presentation/auth-provider";
+import { useSessionTimer } from "@/lib/auth/presentation/use-session-timer";
+import { MenuIcon } from "@/lib/icons";
+import { SessionExpiryModal } from "./_components/session-expiry-modal";
+import { MobileSidebar, Sidebar } from "./_components/sidebar";
 
 /**
  * Map of route prefixes to minimum required roles.
  * Routes not listed here are accessible to all authenticated users.
  */
 const ROUTE_ROLE_MAP: Record<string, Role> = {
-  // Add specific route role requirements here in Phase 4
-  // e.g., "/dashboard/settings": "admin",
+  "/dashboard/settings": "admin",
+  "/dashboard/users": "admin",
 };
 
 export default function ProtectedLayout({
@@ -35,6 +40,8 @@ export default function ProtectedLayout({
   const pathname = usePathname();
   const { isAuthenticated, isLoading, role } = useAuth();
   const [isVerifying, setIsVerifying] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sessionExpired, setSessionExpired] = useState(false);
 
   // Determine required role for the current route
   const requiredRole = useMemo(() => {
@@ -51,6 +58,17 @@ export default function ProtectedLayout({
     if (!requiredRole || !role) return true;
     return hasPermission(role, requiredRole);
   }, [requiredRole, role]);
+
+  // Session timeout handler
+  const handleSessionTimeout = useCallback(() => {
+    setSessionExpired(true);
+  }, []);
+
+  // Inactivity timer — only active when authenticated
+  useSessionTimer({
+    isEnabled: isAuthenticated && !sessionExpired,
+    onTimeout: handleSessionTimeout,
+  });
 
   // Check authentication
   useEffect(() => {
@@ -93,11 +111,38 @@ export default function ProtectedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Placeholder layout — sidebar and navbar coming in Phase 4 */}
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {children}
-      </main>
+    <div className="flex min-h-screen bg-background">
+      {/* Desktop sidebar */}
+      <Sidebar />
+
+      {/* Mobile sidebar (drawer) */}
+      <MobileSidebar isOpen={mobileMenuOpen} onOpenChange={setMobileMenuOpen} />
+
+      {/* Main content area */}
+      <div className="flex flex-1 flex-col">
+        {/* Mobile header with hamburger menu */}
+        <header className="flex h-14 items-center border-b border-border px-4 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(true)}
+            className="flex size-10 items-center justify-center rounded-lg text-muted transition-colors hover:bg-default hover:text-foreground"
+            aria-label="Open navigation menu"
+          >
+            <MenuIcon className="size-5" />
+          </button>
+          <span className="ml-3 text-lg font-bold text-foreground">
+            Referral Creator
+          </span>
+        </header>
+
+        {/* Page content */}
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+          {children}
+        </main>
+      </div>
+
+      {/* Session expiry modal */}
+      <SessionExpiryModal isOpen={sessionExpired} />
     </div>
   );
 }

@@ -8,15 +8,15 @@
  * with the client-side AuthProvider + HTTP client infrastructure.
  */
 
-import { AuthProvider } from "@/lib/auth/presentation/auth-provider";
-import { httpClient } from "@/lib/http-client";
-import type { IAuthRepository } from "@/lib/auth/domain/repository";
 import type {
   LoginCredentials,
   RegistrationData,
   Session,
   User,
 } from "@/lib/auth/domain/entities";
+import type { IAuthRepository } from "@/lib/auth/domain/repository";
+import { AuthProvider } from "@/lib/auth/presentation/auth-provider";
+import { httpClient } from "@/lib/http-client";
 
 /**
  * IAuthRepository implementation using the Axios HTTP client.
