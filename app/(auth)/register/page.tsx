@@ -82,12 +82,13 @@ function RegisterForm() {
       clearError();
       setFormErrors({});
 
-      const formData = new FormData(e.currentTarget);
+      // Use React state instead of FormData — HeroUI Input may not expose
+      // native name attributes to the DOM form element
       const data = {
-        name: formData.get("name") as string,
-        email: formData.get("email") as string,
-        password: formData.get("password") as string,
-        confirmPassword: formData.get("confirmPassword") as string,
+        name: formValues.name,
+        email: formValues.email,
+        password: formValues.password,
+        confirmPassword: formValues.confirmPassword,
       };
 
       // Confirm password match
@@ -125,7 +126,7 @@ function RegisterForm() {
         // Error is already stored in auth state
       }
     },
-    [register, clearError, router],
+    [register, clearError, router, formValues],
   );
 
   const domainHint = `Allowed domains: ${ALLOWED_EMAIL_DOMAINS.join(", ")}`;

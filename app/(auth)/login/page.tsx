@@ -60,10 +60,11 @@ export default function LoginPage() {
       clearError();
       setFormErrors({});
 
-      const formData = new FormData(e.currentTarget);
+      // Use React state instead of FormData — HeroUI Input may not expose
+      // native name attributes to the DOM form element
       const data = {
-        email: formData.get("email") as string,
-        password: formData.get("password") as string,
+        email: formValues.email,
+        password: formValues.password,
       };
 
       // Client-side validation with Valibot
@@ -92,7 +93,7 @@ export default function LoginPage() {
         // Error is already stored in auth state
       }
     },
-    [login, clearError, router],
+    [login, clearError, router, formValues],
   );
 
   return (
