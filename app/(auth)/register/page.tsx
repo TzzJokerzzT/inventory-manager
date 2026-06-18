@@ -21,7 +21,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import * as v from "valibot";
 import { RegisterSchema } from "@/lib/auth/domain/schemas";
 import { ALLOWED_EMAIL_DOMAINS } from "@/lib/auth/domain/value-objects";
@@ -29,6 +29,18 @@ import { useAuth } from "@/lib/auth/presentation/auth-provider";
 import { MailIcon, UserIcon } from "@/lib/icons";
 
 export default function RegisterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center" />
+      }
+    >
+      <RegisterForm />
+    </Suspense>
+  );
+}
+
+function RegisterForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { register, isAuthenticated, isLoading, error, clearError } = useAuth();
@@ -241,9 +253,9 @@ export default function RegisterPage() {
                 </p>
               )}
               {successMessage && (
-                <p className="text-sm text-success" role="status">
+                <output className="text-sm text-success">
                   Account created! Please sign in.
-                </p>
+                </output>
               )}
             </div>
           </Card.Content>
