@@ -5,17 +5,23 @@
  * Import from here instead of `lucide-react` directly.
  */
 
-export { Mail as MailIcon } from "lucide-react";
-export { Lock as LockIcon } from "lucide-react";
-export { Eye as EyeIcon } from "lucide-react";
-export { EyeOff as EyeOffIcon } from "lucide-react";
-export { User as UserIcon } from "lucide-react";
-export { Loader2 as LoaderIcon } from "lucide-react";
-export { LayoutDashboard as DashboardIcon } from "lucide-react";
-export { Package as InventoryIcon } from "lucide-react";
-export { Users as UsersIcon } from "lucide-react";
-export { Settings as SettingsIcon } from "lucide-react";
-export { LogOut as LogoutIcon } from "lucide-react";
-export { Menu as MenuIcon } from "lucide-react";
-export { ChevronLeft as ChevronLeftIcon } from "lucide-react";
-export { AlertTriangle as AlertTriangleIcon } from "lucide-react";
+export {
+  AlertTriangle as AlertTriangleIcon,
+  ArrowRightLeft as MovementsIcon,
+  BarChart3 as ReportsIcon,
+  ChevronLeft as ChevronLeftIcon,
+  Eye as EyeIcon,
+  EyeOff as EyeOffIcon,
+  LayoutDashboard as DashboardIcon,
+  Loader2 as LoaderIcon,
+  Lock as LockIcon,
+  LogOut as LogoutIcon,
+  Mail as MailIcon,
+  Menu as MenuIcon,
+  Package as InventoryIcon,
+  Settings as SettingsIcon,
+  ShoppingCart as PurchasesIcon,
+  User as UserIcon,
+  Users as UsersIcon,
+  X as XIcon,
+} from "lucide-react";
