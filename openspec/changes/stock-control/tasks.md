@@ -14,14 +14,14 @@ PR-2 (base=PR-1): API routes GET/POST, application use-cases, infra SQL repo wir
 PR-3 (base=PR-2): Client hooks, StockBadge, StockAdjustModal, stories/e2e tests, UI wiring (est 170 lines)
 
 ## Phase 1: Domain
-- [ ] 1.1 | Domain: define StockRecord & Movement types + Repository interface | AC: types compiled, interfaces exported | Effort: small (4h) | est lines: 40 | deps: none | risk: low | tests: unit type/shape tests
-- [ ] 1.2 | Domain: implement applyMovement (validate delta, enforce >=0, version inc) | AC: function returns new stock/version, rejects negative | Effort: medium (8h) | est lines: 80 | deps: 1.1 | risk: medium (concurrency) | tests: unit property tests
+ - [x] 1.1 | Domain: define StockRecord & Movement types + Repository interface | AC: types compiled, interfaces exported | Effort: small (4h) | est lines: 40 | deps: none | risk: low | tests: unit type/shape tests
+ - [x] 1.2 | Domain: implement applyMovement (validate delta, enforce >=0, version inc) | AC: function returns new stock/version, rejects negative | Effort: medium (8h) | est lines: 80 | deps: 1.1 | risk: medium (concurrency) | tests: unit property tests
 
 ## Phase 2: Migration
-- [ ] 2.1 | Migration: create stock_records & stock_movements SQL migrations + down scripts | AC: migrations run in test DB, schema matches spec | Effort: medium (8h) | est lines: 90 | deps: 1.1 | risk: medium (backfill time) | tests: migration schema test
+ - [x] 2.1 | Migration: create stock_records & stock_movements SQL migrations + down scripts | AC: migrations run in test DB, schema matches spec | Effort: medium (8h) | est lines: 90 | deps: 1.1 | risk: medium (backfill time) | tests: migration schema test
 
 ## Phase 3: Infrastructure
-- [ ] 3.1 | Repo infra: in-memory repo for dev & SQL repo stub implementing interface | AC: in-memory passes domain tests; SQL stub compiles | Effort: medium (8h) | est lines: 70 | deps: 1.1,2.1 | risk: medium | tests: integration in-memory
+ - [x] 3.1 | Repo infra: in-memory repo for dev & SQL repo stub implementing interface | AC: in-memory passes domain tests; SQL stub compiles | Effort: medium (8h) | est lines: 70 | deps: 1.1,2.1 | risk: medium | tests: integration in-memory
 - [ ] 3.2 | Auth adapter: enforce roles (Admin/Operator/Viewer) in API infra | AC: endpoints reject/allow per role in integration tests | Effort: small (4h) | est lines: 30 | deps: infra auth hooks | risk: low | tests: integration RBAC tests
 
 ## Phase 4: Application
