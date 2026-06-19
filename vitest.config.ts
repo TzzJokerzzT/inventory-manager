@@ -7,7 +7,8 @@ export default defineConfig({
     include: ["test/**/*.test.ts"],
     deps: { inline: ["@/src/**"] },
     alias: {
-      "@/src": "/",
+      "@/src/domain": "/src/domain",
+      "@/src/infra": "/src/infra",
     },
   },
 });
