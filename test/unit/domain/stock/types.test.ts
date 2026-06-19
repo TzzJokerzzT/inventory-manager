@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { StockRecord, Movement } from "@/src/domain/stock/types";
+import type { StockRecord, Movement } from "@/src/domain/stock/types";
 
 it("StockRecord shape", () => {
   const r: StockRecord = { productId: "p1", stock: 10, version: 1 };
